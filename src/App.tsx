@@ -58,7 +58,7 @@ function App() {
     localStorage.setItem(learnedKey, JSON.stringify(next))
   }
   function resetFilters() { setQuery(''); setLevel('すべて'); setCategory('すべて'); setLessonTermIds(null) }
-  function chooseLesson(lesson: LearningUnit) { setQuery(''); setLevel('すべて'); setCategory('すべて'); setCatalogView(lesson.view); setLessonTermIds(lesson.view === '用語' ? lesson.termIds : null); document.querySelector('#catalog')?.scrollIntoView({ behavior: 'smooth' }) }
+  function chooseLesson(lesson: LearningUnit) { setQuery(''); setLevel('すべて'); setCategory(lesson.category ?? 'すべて'); setCatalogView(lesson.view); setLessonTermIds(lesson.view === '用語' ? lesson.termIds : null); document.querySelector('#catalog')?.scrollIntoView({ behavior: 'smooth' }) }
 
   function renderCard(entry: Entry) {
     return <article className="entry-card" key={entry.id}>
