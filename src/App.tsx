@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ArrowLeft, BookOpen, BookmarkCheck, Check, ChevronRight, CircleHelp, Search, Sparkles, X } from 'lucide-react'
+import { ArrowLeft, Spade, BookmarkCheck, Check, ChevronRight, CircleHelp, Search, Sparkles, X } from 'lucide-react'
 import { categories, classifyQuery, entries, steps, type Entry } from './data/entries'
 
 type EntryHistory = { id: string; scrollY: number }
@@ -54,10 +54,9 @@ function App() {
   function chooseStep(target: string) { setLevel('すべて'); setCategory(target); document.querySelector('#catalog')?.scrollIntoView({ behavior: 'smooth' }) }
 
   function renderCard(entry: Entry) {
-    const suit = entry.category === 'ポジション' ? '♠' : entry.category === 'アクション' ? '♣' : entry.category === 'ゲームの流れ' ? '♦' : '♥'
     return <article className="entry-card" key={entry.id}>
       <div className="entry-card-top"><span className={`type-pill type-${entry.level}`}>{entry.level}</span><span className="entry-category">{entry.category}</span></div>
-      <div className={`entry-art suit-${suit === '♠' ? 'spade' : suit === '♥' ? 'heart' : suit === '♦' ? 'diamond' : 'club'}`} aria-hidden="true"><span>{suit}</span><small>{entry.english.split(' · ')[0]}</small></div>
+      <div className="entry-art" aria-hidden="true"><span className="mini-label">HOLE CARDS</span><div className="pocket-cards"><span className="mini-playing-card">A<small>♠</small></span><span className="mini-playing-card red-card">K<small>♥</small></span></div><span className="mini-chip-stack"><i></i><i></i><i></i></span></div>
       <h3><button className="entry-title-button" onClick={() => openEntry(entry)}>{entry.name}</button></h3>
       <p className="entry-reading">{entry.english}</p>
       <p className="entry-summary">{entry.explanation}</p>
@@ -66,7 +65,7 @@ function App() {
   }
 
   if (selected) return <div className="app-shell">
-    <header className="topbar"><button className="brand-button" onClick={() => { setSelectedId(null); setHistory([]) }} aria-label="図鑑一覧へ戻る"><span className="brand-mark"><BookOpen size={20} /></span><span>ホールデム図鑑</span></button><span className="topbar-note">はじめてのホールデムを、もっとわかりやすく。</span></header>
+    <header className="topbar"><button className="brand-button" onClick={() => { setSelectedId(null); setHistory([]) }} aria-label="図鑑一覧へ戻る"><span className="brand-mark"><Spade size={19} fill="currentColor" /></span><span>ホールデム図鑑</span></button><span className="topbar-note">はじめてのホールデムを、もっとわかりやすく。</span></header>
     <main className="detail-layout"><button className="back-link" onClick={backFromEntry}><ArrowLeft size={16} />{history.length ? '前の用語へ戻る' : '図鑑一覧へ戻る'}</button>
       <article className="detail-card"><div className="detail-kicker"><span className={`type-pill type-${selected.level}`}>{selected.level}</span><span className="entry-category">{selected.category}</span></div>
         <div className="detail-title-row"><div><h1>{selected.name}</h1><p className="reading">{selected.english}　·　{selected.reading}</p></div><button className={`learn-button ${learned.includes(selected.id) ? 'is-learned' : ''}`} onClick={() => toggleLearned(selected.id)}>{learned.includes(selected.id) ? <Check size={17} /> : <BookmarkCheck size={17} />}{learned.includes(selected.id) ? '覚えた！' : '覚えた！にする'}</button></div>
@@ -79,10 +78,10 @@ function App() {
   </div>
 
   return <div className="app-shell">
-    <header className="topbar"><a className="brand-button" href="#top"><span className="brand-mark"><BookOpen size={20} /></span><span>ホールデム図鑑</span></a><span className="topbar-note">はじめてのホールデムを、もっとわかりやすく。</span></header>
+    <header className="topbar"><a className="brand-button" href="#top"><span className="brand-mark"><Spade size={19} fill="currentColor" /></span><span>ホールデム図鑑</span></a><span className="topbar-note">はじめてのホールデムを、もっとわかりやすく。</span></header>
     <main id="top">
       <section className="hero"><div className="hero-content"><div className="eyebrow"><Sparkles size={14} /> TEXAS HOLD'EM FOR BEGINNERS</div><h1>用語をひとつずつ、<br /><em>自分のものに。</em></h1><p>テキサスホールデムの「これって何？」を、<br />意味と使い方からやさしく解説します。</p><div className="hero-stats"><div><strong>{entries.length}</strong><span>掲載用語</span></div><div><strong>{learnedCount}<small> / {entries.length}</small></strong><span>覚えた用語</span></div></div><div className="progress-track" aria-label={`学習進捗 ${progress}%`}><span style={{ width: `${progress}%` }} /></div></div>
-        <div className="hero-art" aria-hidden="true"><div className="sun-disc" /><div className="playing-card card-back">A<small>♠</small></div><div className="playing-card card-left">K<small>♥</small></div><div className="playing-card card-front">Q<small>♦</small></div><span className="floating-dot dot-one" /><span className="floating-dot dot-two" /><span className="art-caption">LEARN AT YOUR OWN PACE</span></div></section>
+        <div className="hero-art" aria-hidden="true"><div className="felt-table"><span className="table-mark">HOLD’EM · COMMUNITY CARDS</span><div className="board-cards"><span className="board-card"><b>A</b><small>♠</small></span><span className="board-card red-card"><b>K</b><small>♥</small></span><span className="board-card red-card"><b>Q</b><small>♦</small></span><span className="board-card"><b>J</b><small>♣</small></span><span className="board-card"><b>10</b><small>♠</small></span></div><div className="table-pot"><span className="pot-chips"><i></i><i></i><i></i></span><span>POT · 12.5 BB</span></div><span className="dealer-button">D</span></div><span className="art-caption">FLOP · TURN · RIVER</span></div></section>
       <section className="steps-section"><div className="section-heading"><div><div className="section-eyebrow">START HERE</div><h2>4つのステップで覚える</h2></div><p className="section-caption">気になるところから、いつでもどうぞ。</p></div><div className="step-grid">{steps.map((step, index) => <button className="step-card" key={step.id} onClick={() => chooseStep(step.category)}><span className={`step-icon step-icon-${index + 1}`}>{step.icon}</span><span className="step-number">{step.number}</span><strong>{step.title}</strong><span className="step-description">{step.description}</span><span className="step-bottom"><span>{entries.filter((entry) => entry.category === step.category).length} 用語</span><ChevronRight size={15} /></span></button>)}</div></section>
       <section className="catalog-section" id="catalog"><div className="section-heading catalog-heading"><div><div className="section-eyebrow">THE GLOSSARY</div><h2>用語を探す</h2></div><span className="result-count">{query ? groups.exact.length + groups.suggested.length + groups.related.length : filtered.length} 件</span></div>
         <label className="search-box"><Search size={18} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="用語を検索（例：フロップ、all-in、BB）" aria-label="用語を検索" />{query && <button className="clear-search" onClick={() => setQuery('')} aria-label="検索をクリア"><X size={16} /></button>}</label>
