@@ -12,6 +12,8 @@
 - [PokerStars: Poker Terms and Definitions](https://www.pokerstars.com/poker/terms/) — All-in、Call、Blind、Button、Side Potなど基本用語を説明。
 - [PokerStars Help: Poker terms and rules explained](https://www.pokerstars.com/help/articles/poker-rules-master/229151/) — サイドポット、キッカー、ポットリミット、最小レイズなどルール依存の説明。
 - [PokerStars: Poker Hand Rankings](https://www.pokerstars.com/poker/games/rules/hand-rankings/?no_redirect=1) — テキサスホールデムの標準的な10種類の役の順位と比較。
+- [PokerStars: Poker Rules](https://www.pokerstars.com/poker/games/rules/) — 各ベッティングラウンド、コミュニティカード、基本アクションの説明。
+- [PokerStars Learn: Texas Hold'em Rules](https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/) — 4つのベッティングラウンドとフロップ・ターン・リバーの流れ。
 - [PokerStars Learn: Poker Hand Rankings](https://www.pokerstars.com/poker/learn/lesson/poker-hand-rankings/) — ハイカードからワンペアなどの構成とキッカーの使われ方。
 - [PokerStars: Starting Hands](https://www.pokerstars.com/poker/games/rules/hand-rankings/starting-hands/) — プリフロップのスターティングハンド強度の考え方。
 - [World Poker Federation: Poker Terms & Slang](https://worldpokerfederation.org/poker/how-to-play-poker/poker-terms-slang/) — 基本動作からスラングまで広範な語彙の存在を確認。
