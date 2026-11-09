@@ -57,16 +57,17 @@ export const entries: Entry[] = [
   {id:'pocket-pair',name:'ポケットペア',reading:'ポケットペア',english:'Pocket Pair',aliases:['pocket pair','ポケットペア'],category:'カードと役',level:'実戦',explanation:'最初に配られた2枚のホールカードが同じランクであるスターティングハンド。',example:'「ホールカードがA♠とA♥ならポケットペア」',related:['ホールカード','ペア','スターティングハンド'],source:'PokerStars Starting Hands'},
   {id:'starting-hand',name:'スターティングハンド',reading:'スターティングハンド',english:'Starting Hand',aliases:['starting hand','開始時の手札'],category:'カードと役',level:'基本',explanation:'テキサスホールデムで各プレイヤーに最初に配られる2枚のホールカード。プリフロップでの判断の出発点になります。',example:'「最初の2枚をスターティングハンドと呼ぶ」',related:['ホールカード','ポケットペア','プリフロップ'],source:'PokerStars Starting Hands'},
   {id:'top-pair',name:'トップペア',reading:'トップペア',english:'Top Pair',aliases:['top pair'],category:'カードと役',level:'実戦',explanation:'ボードに出ている最も高いランクのカードと、自分のホールカード1枚で作るペア。',example:'「Aを持ち、ボードにAが出てトップペアになった」',related:['ペア','ボード','キッカー'],source:'PokerStars Learn'},
+  {id:'opening-raise',name:'オープンレイズ',reading:'オープンレイズ',english:'Open Raise',aliases:['open raise','open-raise','オープン'],category:'戦略用語',level:'実戦',explanation:'プリフロップで、ブラインド以外のプレイヤーが最初に自発的にレイズして参加すること。参加するハンドの幅はポジションや人数などで変わります。',example:'「全員がフォールドした後、カットオフからオープンレイズした」',related:['プリフロップ','ポジション','レンジ','3ベット'],source:'PokerStars Learn: Opening the Pot'},
+  {id:'value-bet',name:'バリューベット',reading:'バリューベット',english:'Value Bet',aliases:['value bet','value-bet','バリューベットする'],category:'戦略用語',level:'実戦',explanation:'自分より弱いハンドにコールされることを期待して行うベット。単に「自分が強いと思う」だけでなく、相手が何でコールするかを考えます。',example:'「弱いペアからコールをもらえると考えてバリューベットした」',related:['ベットサイズ','レンジ','ブラフ'],source:'PokerStars Learn: Value Betting'},
+  {id:'check-raise',name:'チェックレイズ',reading:'チェックレイズ',english:'Check-Raise',aliases:['check-raise','check raise','チェック・レイズ'],category:'戦略用語',level:'実戦',explanation:'同じベッティングラウンドで、先にチェックした後、他のプレイヤーのベットを受けてレイズすること。',example:'「フロップでチェックし、相手のベットにチェックレイズした」',related:['チェック','レイズ','ブラフ','バリューベット'],source:'PokerStars Terms'},
+  {id:'bet-sizing',name:'ベットサイズ',reading:'ベットサイズ',english:'Bet Sizing',aliases:['bet sizing','bet size','ベット額'],category:'戦略用語',level:'実戦',explanation:'ポットに対してどれだけの額をベットするか。ボード、ポジション、双方のレンジなどで適切なサイズは変わり、強い手かどうかだけで決めるものではありません。',example:'「ボードとレンジを見てベットサイズを選ぶ」',related:['ポット','ポットオッズ','レンジ','バリューベット'],source:'PokerStars Learn: Bet Sizing'},
+  {id:'bluff-catcher',name:'ブラフキャッチャー',reading:'ブラフキャッチャー',english:'Bluff Catcher',aliases:['bluff catcher','ブラフ・キャッチャー'],category:'戦略用語',level:'実戦',explanation:'相手のブラフには勝てる一方、バリューベットには負ける強さのハンド。コールするかは相手のレンジや必要な勝率を考えて判断します。',example:'「相手のブラフ候補が十分あるか考えて、ブラフキャッチャーでコールした」',related:['ブラフ','バリューベット','レンジ','ポットオッズ'],source:'PokerStars Learn'},
+  {id:'baseline-strategy',name:'定跡（ベースライン）',reading:'ていせき・ベースライン',english:'Baseline Strategy',aliases:['定跡','ベースライン戦略','standard line'],category:'戦略用語',level:'実戦',explanation:'よくある状況で判断の出発点にする基本方針。ホールデムに全状況共通の固定手順はなく、ポジション、相手のレンジ、ボード、スタックなどを見て調整します。',example:'「まず標準的なプリフロップの参加レンジを学び、状況に応じて調整する」',related:['ポジション','レンジ','オープンレイズ','ベットサイズ'],source:'PokerStars Learn: Opening the Pot'},
+  {id:'board-texture',name:'ボードテクスチャ',reading:'ボードテクスチャ',english:'Board Texture',aliases:['board texture','ボードの質感','ボードの構成'],category:'戦略用語',level:'実戦',explanation:'コミュニティカードの組み合わせの特徴。ランクが連続しているか、同じスートが多いか、ペアボードかなどから、できやすい役やドローを考えます。',example:'「同じスートや連続したランクが多いボードテクスチャを確認する」',related:['ボード','コミュニティカード','ドロー','ベットサイズ'],source:'PokerStars Learn: Bet Sizing'},
+  {id:'barrel',name:'バレル',reading:'バレル',english:'Barrel',aliases:['barrel','セカンドバレル','サードバレル'],category:'戦略用語',level:'実戦',explanation:'前のベッティングラウンドでベットしたプレイヤーが、次のラウンドでも続けてベットすること。ターンで続ければセカンドバレル、リバーまで続ければサードバレルと呼ぶことがあります。',example:'「フロップのベットに続けてターンでもバレルを打った」',related:['Cベット','ターン','リバー','ベットサイズ'],source:'PokerStars Learn'},
 ]
 
 export const categories = [...new Set(entries.map((entry) => entry.category))]
-export const steps = [
-  {id:'cards',number:'STEP 01',title:'カードの強さ',description:'ランクとスート、Aの扱い',icon:'A',view:'カード',category:'すべて'},
-  {id:'hands',number:'STEP 02',title:'役',description:'10種類の役を強い順に',icon:'♣',view:'役',category:'すべて'},
-  {id:'flow',number:'STEP 03',title:'ゲームの流れ',description:'配られてから勝負が決まるまで',icon:'♠',view:'用語',category:'ゲームの流れ'},
-  {id:'actions',number:'STEP 04',title:'アクション',description:'チェック、コール、レイズの違い',icon:'↗',view:'用語',category:'アクション'},
-] as const
-
 export function classifyQuery(entry: Entry, query: string): 'exact-title' | 'suggested-title' | 'related-description' | null {
   const q = query.trim().toLocaleLowerCase()
   if (!q) return null
