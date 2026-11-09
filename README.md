@@ -1,24 +1,30 @@
 # Texas Hold'em Glossary
 
-日本語でテキサスホールデムの用語を探せる、初心者向け用語辞書のMVPです。
+初心者向けに、テキサスホールデムの用語を意味・使用例・関連語と一緒に学べる図鑑サイトです。
 
 ## 開発
 
-`src/index.html` をブラウザで開くと試作版を確認できます。
+Node.js 20 以上を用意して、プロジェクトのフォルダーで実行します。
 
-## ドキュメント
+```bash
+npm install
+npm run dev
+```
 
-- [調査メモ](docs/research.md)
-- [MVP仕様書](docs/spec.md)
+本番用ビルドは `npm run build` で確認できます。
 
-## MVPの範囲
+## 用語データ
 
-- 日本語・英語・略語から用語検索
-- カテゴリ絞り込み
-- 読みやすい定義と短い使用例
-- 出典・別名・関連語を管理できるデータ設計
+- `src/data/entries.ts` に初期用語、別名、カテゴリ、説明、使用例、関連語を定義
+- 用語は「基本」「実戦」の学習目安付き
+- 「覚えた！」の状態はブラウザーのローカルストレージに保存
+- 画面の意味説明は独自の日本語で作成し、参考資料名を用語詳細に表示
 
-## 注意
+## GitHub Pages
 
-このサイトは用語学習を目的とし、賭け方や利益を勧めるものではありません。掲載する定義は出典を確認し、独自の日本語で記述します。
+`.github/workflows/deploy.yml` は `main` への push 時にビルドし、GitHub Pages へデプロイします。GitHub の **Settings → Pages → Build and deployment → Source** を **GitHub Actions** に設定してください。
+
+## 初期調査
+
+用語の範囲を定めるため、[調査メモ](docs/research.md) と [MVP仕様書](docs/spec.md) を参照してください。
 
