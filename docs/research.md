@@ -16,6 +16,10 @@
 - [PokerStars Learn: Texas Hold'em Rules](https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/) — 4つのベッティングラウンドとフロップ・ターン・リバーの流れ。
 - [PokerStars Learn: Poker Hand Rankings](https://www.pokerstars.com/poker/learn/lesson/poker-hand-rankings/) — ハイカードからワンペアなどの構成とキッカーの使われ方。
 - [PokerStars: Starting Hands](https://www.pokerstars.com/poker/games/rules/hand-rankings/starting-hands/) — プリフロップのスターティングハンド強度の考え方。
+- [PokerStars Learn: Opening the Pot](https://www.pokerstars.com/poker/learn/lesson/opening-the-pot/) — オープンレイズとポジション別の参加レンジを考える説明。
+- [PokerStars Learn: Bet Sizing](https://www.pokerstars.com/poker/learn/lesson/bet-sizing/) — ベットサイズとポジション、ボード、レンジなどの関係。
+- [PokerStars Learn: Value Betting](https://www.pokerstars.com/poker/learn/lesson/cash-value-betting/) — バリューベットの考え方。
+- [PokerStars Terms: Check-Raise](https://www.pokerstars.com/poker/terms/) — チェック後に相手のベットへレイズするアクション。
 - [World Poker Federation: Poker Terms & Slang](https://worldpokerfederation.org/poker/how-to-play-poker/poker-terms-slang/) — 基本動作からスラングまで広範な語彙の存在を確認。
 - [PokerNews: Texas Hold'em terms](https://www.pokernews.com/pokerterms/texas-holdem.htm) — テキサスホールデム特有の用語集。
 
@@ -72,4 +76,19 @@
 4. 各項目に出典URL、確認日、編集者メモを保持する。公開ページでは引用ではなく独自の短い説明を書く。
 5. 用語の重複や別表記（例: オールイン / all-in）を正規化し、検索用別名として扱う。
 6. 将来、投稿提案機能を足す場合は、投稿内容を即時公開せずレビュー後に反映する。
+
+## 上級編の定跡・戦略語
+
+上級編では「唯一の正解」ではなく、状況を考えるためのベースラインとして以下を追加する。実際の選択はポジション、参加レンジ、ボード、相手、ベットサイズなどで変わる。
+
+- オープンレイズ: まだ誰も参加していないプリフロップで最初に行うレイズ。
+- バリューベット: より弱い手からコールされることを期待して行うベット。
+- チェックレイズ: 先にチェックし、相手のベットを受けてレイズする。
+- ベットサイズ: ベット額をポットや状況に対してどの程度にするか。
+- ブラフキャッチャー: 相手のブラフには勝つが、バリューベットには負けることが多い手。
+- ボードテクスチャ: コミュニティカードの連結性やスート構成など、役の作られやすさを示す特徴。
+- バレル: 連続するベッティングラウンドで続けてベットすること。
+- 定跡（ベースライン）: 状況を考える出発点となる一般的な戦略。固定の手順ではない。
+
+出典はPokerStars Learnの[オープンレイズ](https://www.pokerstars.com/poker/learn/lesson/opening-the-pot/)、[ベットサイズ](https://www.pokerstars.com/poker/learn/lesson/bet-sizing/)、[バリューベット](https://www.pokerstars.com/poker/learn/lesson/cash-value-betting/)、および[ポーカー用語集](https://www.pokerstars.com/poker/terms/)を参照。各説明文は独自の日本語で記述する。
 
