@@ -48,11 +48,11 @@ export const entries: Entry[] = [
 
 export const categories = [...new Set(entries.map((entry) => entry.category))]
 export const steps = [
-  {id:'flow',number:'STEP 01',title:'ゲームの流れ',description:'配られてから勝負が決まるまで',icon:'◉',category:'ゲームの流れ'},
-  {id:'actions',number:'STEP 02',title:'アクション',description:'チェック、コール、レイズの違い',icon:'↗',category:'アクション'},
-  {id:'positions',number:'STEP 03',title:'席とポジション',description:'誰がいつ行動するかを知る',icon:'⌖',category:'ポジション'},
-  {id:'strategy',number:'STEP 04',title:'実戦で聞く言葉',description:'ドローやレンジなどの頻出語',icon:'✳',category:'戦略用語'},
-]
+  {id:'cards',number:'STEP 01',title:'カードの強さを知る',description:'ランクとスート、Aの扱いを知る',icon:'A',view:'カード',category:'すべて'},
+  {id:'hands',number:'STEP 02',title:'役を知る',description:'10種類の役を強い順に覚える',icon:'♣',view:'役',category:'すべて'},
+  {id:'flow',number:'STEP 03',title:'ゲームの流れ',description:'配られてから勝負が決まるまで',icon:'♠',view:'用語',category:'ゲームの流れ'},
+  {id:'actions',number:'STEP 04',title:'アクションを知る',description:'チェック、コール、レイズの違い',icon:'↗',view:'用語',category:'アクション'},
+] as const
 
 export function classifyQuery(entry: Entry, query: string): 'exact-title' | 'suggested-title' | 'related-description' | null {
   const q = query.trim().toLocaleLowerCase()
