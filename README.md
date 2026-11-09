@@ -1,2 +1,24 @@
-# texas-holdem-glossary
-Japanese Texas Hold’em glossary — searchable beginner-friendly terms and examples.
+# Texas Hold'em Glossary
+
+日本語でテキサスホールデムの用語を探せる、初心者向け用語辞書のMVPです。
+
+## 開発
+
+`src/index.html` をブラウザで開くと試作版を確認できます。
+
+## ドキュメント
+
+- [調査メモ](docs/research.md)
+- [MVP仕様書](docs/spec.md)
+
+## MVPの範囲
+
+- 日本語・英語・略語から用語検索
+- カテゴリ絞り込み
+- 読みやすい定義と短い使用例
+- 出典・別名・関連語を管理できるデータ設計
+
+## 注意
+
+このサイトは用語学習を目的とし、賭け方や利益を勧めるものではありません。掲載する定義は出典を確認し、独自の日本語で記述します。
+
