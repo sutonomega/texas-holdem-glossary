@@ -48,10 +48,10 @@ export const entries: Entry[] = [
 
 export const categories = [...new Set(entries.map((entry) => entry.category))]
 export const steps = [
-  {id:'cards',number:'STEP 01',title:'カードの強さを知る',description:'ランクとスート、Aの扱いを知る',icon:'A',view:'カード',category:'すべて'},
-  {id:'hands',number:'STEP 02',title:'役を知る',description:'10種類の役を強い順に覚える',icon:'♣',view:'役',category:'すべて'},
+  {id:'cards',number:'STEP 01',title:'カードの強さ',description:'ランクとスート、Aの扱い',icon:'A',view:'カード',category:'すべて'},
+  {id:'hands',number:'STEP 02',title:'役',description:'10種類の役を強い順に',icon:'♣',view:'役',category:'すべて'},
   {id:'flow',number:'STEP 03',title:'ゲームの流れ',description:'配られてから勝負が決まるまで',icon:'♠',view:'用語',category:'ゲームの流れ'},
-  {id:'actions',number:'STEP 04',title:'アクションを知る',description:'チェック、コール、レイズの違い',icon:'↗',view:'用語',category:'アクション'},
+  {id:'actions',number:'STEP 04',title:'アクション',description:'チェック、コール、レイズの違い',icon:'↗',view:'用語',category:'アクション'},
 ] as const
 
 export function classifyQuery(entry: Entry, query: string): 'exact-title' | 'suggested-title' | 'related-description' | null {
