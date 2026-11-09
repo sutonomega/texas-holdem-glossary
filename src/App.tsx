@@ -1,14 +1,16 @@
 import { useMemo, useState } from 'react'
 import { ArrowLeft, Spade, BookmarkCheck, Check, ChevronRight, CircleHelp, Search, Sparkles, X } from 'lucide-react'
-import { categories, classifyQuery, entries, steps, type Entry } from './data/entries'
+import { categories, classifyQuery, entries, type Entry } from './data/entries'
 import { cardRanks, hands, suits } from './data/hands'
 import GlossaryText from './components/GlossaryText'
+import { learningTracks, type LearningUnit } from './data/learningTracks'
 
 type EntryHistory = { id: string; scrollY: number }
 const learnedKey = 'texas-holdem-glossary-learned'
 
 function App() {
   const [catalogView, setCatalogView] = useState<'用語' | '役' | 'カード'>('用語')
+  const [lessonTermIds, setLessonTermIds] = useState<string[] | null>(null)
   const [query, setQuery] = useState('')
   const [level, setLevel] = useState('すべて')
   const [category, setCategory] = useState('すべて')
@@ -21,8 +23,8 @@ function App() {
   const selected = entries.find((entry) => entry.id === selectedId) ?? null
   const learnedCount = entries.filter((entry) => learned.includes(entry.id)).length
   const filtered = useMemo(() => entries.filter((entry) =>
-    (level === 'すべて' || entry.level === level) && (category === 'すべて' || entry.category === category),
-  ), [level, category])
+    (lessonTermIds === null || lessonTermIds.includes(entry.id)) && (level === 'すべて' || entry.level === level) && (category === 'すべて' || entry.category === category),
+  ), [lessonTermIds, level, category])
   const groups = useMemo(() => {
     const exact: Entry[] = [], suggested: Entry[] = [], related: Entry[] = []
     if (!query.trim()) return { exact, suggested, related, all: filtered }
@@ -36,7 +38,7 @@ function App() {
   }, [filtered, query])
   const filteredHands = useMemo(() => hands.filter((hand) => !query.trim() || `${hand.name} ${hand.english} ${hand.description}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase())), [query])
   const filteredCardRanks = useMemo(() => cardRanks.filter((card) => !query.trim() || `${card.rank} ${card.name}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase())), [query])
-  const hasFilters = Boolean(query) || level !== 'すべて' || category !== 'すべて'
+  const hasFilters = Boolean(query) || level !== 'すべて' || category !== 'すべて' || lessonTermIds !== null
   const progress = entries.length ? Math.round(learnedCount / entries.length * 100) : 0
 
   function openEntry(entry: Entry) {
@@ -55,8 +57,8 @@ function App() {
     setLearned(next)
     localStorage.setItem(learnedKey, JSON.stringify(next))
   }
-  function resetFilters() { setQuery(''); setLevel('すべて'); setCategory('すべて') }
-  function chooseStep(view: '用語' | '役' | 'カード', targetCategory?: string) { setQuery(''); setLevel('すべて'); setCategory(targetCategory ?? 'すべて'); setCatalogView(view); document.querySelector('#catalog')?.scrollIntoView({ behavior: 'smooth' }) }
+  function resetFilters() { setQuery(''); setLevel('すべて'); setCategory('すべて'); setLessonTermIds(null) }
+  function chooseLesson(lesson: LearningUnit) { setQuery(''); setLevel('すべて'); setCategory('すべて'); setCatalogView(lesson.view); setLessonTermIds(lesson.view === '用語' ? lesson.termIds : null); document.querySelector('#catalog')?.scrollIntoView({ behavior: 'smooth' }) }
 
   function renderCard(entry: Entry) {
     return <article className="entry-card" key={entry.id}>
@@ -87,9 +89,9 @@ function App() {
     <main id="top">
       <section className="hero"><div className="hero-content"><div className="eyebrow"><Sparkles size={14} /> TEXAS HOLD'EM FOR BEGINNERS</div><h1>用語をひとつずつ、<br /><em>自分のものに。</em></h1><p>テキサスホールデムの「これって何？」を、<br />意味と使い方からやさしく解説します。</p><div className="hero-stats"><div><strong>{entries.length}</strong><span>掲載用語</span></div><div><strong>{learnedCount}<small> / {entries.length}</small></strong><span>覚えた用語</span></div></div><div className="progress-track" aria-label={`学習進捗 ${progress}%`}><span style={{ width: `${progress}%` }} /></div></div>
         <div className="hero-art" aria-hidden="true"><div className="felt-table"><span className="table-mark">HOLD’EM · COMMUNITY CARDS</span><div className="board-cards"><span className="board-card"><b>A</b><small>♠</small></span><span className="board-card red-card"><b>K</b><small>♥</small></span><span className="board-card red-card"><b>Q</b><small>♦</small></span><span className="board-card"><b>J</b><small>♣</small></span><span className="board-card"><b>10</b><small>♠</small></span></div><div className="table-pot"><span className="pot-chips"><i></i><i></i><i></i></span><span>POT · 12.5 BB</span></div><span className="dealer-button">D</span></div><span className="art-caption">FLOP · TURN · RIVER</span></div></section>
-      <section className="steps-section"><div className="section-heading"><div><div className="section-eyebrow">START HERE</div><h2>4つのステップで覚える</h2></div><p className="section-caption">気になるところから、いつでもどうぞ。</p></div><div className="step-grid">{steps.map((step, index) => <button className="step-card" key={step.id} onClick={() => chooseStep(step.view, step.category)}><span className={`step-icon step-icon-${index + 1}`}>{step.icon}</span><span className="step-number">{step.number}</span><strong>{step.title}</strong><span className="step-description">{step.description}</span><span className="step-bottom"><span>{step.view === 'カード' ? `${cardRanks.length} ランク` : step.view === '役' ? `${hands.length} 種類` : `${entries.filter((entry) => entry.category === step.category).length} 用語`}</span><ChevronRight size={15} /></span></button>)}</div></section>
+      <section className="steps-section"><div className="section-heading"><div><div className="section-eyebrow">LEARNING ROADMAP</div><h2>4つのステップで覚える</h2></div><p className="section-caption">初級から上級まで、用語をつなげて学べます。</p></div><div className="learning-tracks">{learningTracks.map((track, trackIndex) => <section className={`learning-track track-${track.id}`} key={track.id}><div className="track-heading"><div><span className="track-label">COURSE 0{trackIndex + 1}</span><h3>{track.title}</h3><p>{track.summary}</p></div><span className="track-lesson-count">{track.units.length} STEPS</span></div>{track.note && <p className="track-note"><Sparkles size={14}/><GlossaryText text={track.note}/></p>}<div className="step-grid">{track.units.map((unit, index) => <button className="step-card" key={unit.id} onClick={() => chooseLesson(unit)}><span className={`step-icon step-icon-${index + 1}`}>{unit.icon}</span><span className="step-number">STEP {String(index + 1).padStart(2,'0')}</span><strong>{unit.title}</strong><span className="step-description">{unit.description}</span><span className="step-bottom"><span>{unit.view === 'カード' ? `${cardRanks.length} ランク` : unit.view === '役' ? `${hands.length} 種類` : `${unit.termIds.length} 用語`}</span><ChevronRight size={15}/></span></button>)}</div></section>)}</div></section>
       <section className="catalog-section" id="catalog"><div className="section-heading catalog-heading"><div><div className="section-eyebrow">THE POKER GUIDE</div><h2>{catalogView === '用語' ? '用語を探す' : catalogView === '役' ? '役の強さを覚える' : 'カードの強さを知る'}</h2></div><span className="result-count">{catalogView === '用語' ? (query ? groups.exact.length + groups.suggested.length + groups.related.length : filtered.length) : catalogView === '役' ? filteredHands.length : filteredCardRanks.length} 件</span></div>
-        <div className="catalog-tabs" role="tablist" aria-label="図鑑の種類"><button role="tab" aria-selected={catalogView === '用語'} className={catalogView === '用語' ? 'active' : ''} onClick={() => setCatalogView('用語')}>用語 <span>{entries.length}</span></button><button role="tab" aria-selected={catalogView === '役'} className={catalogView === '役' ? 'active' : ''} onClick={() => setCatalogView('役')}>役 <span>10</span></button><button role="tab" aria-selected={catalogView === 'カード'} className={catalogView === 'カード' ? 'active' : ''} onClick={() => setCatalogView('カード')}>カードの強さ <span>13</span></button></div>
+        <div className="catalog-tabs" role="tablist" aria-label="図鑑の種類"><button role="tab" aria-selected={catalogView === '用語'} className={catalogView === '用語' ? 'active' : ''} onClick={() => { setCatalogView('用語'); setLessonTermIds(null) }}>用語 <span>{entries.length}</span></button><button role="tab" aria-selected={catalogView === '役'} className={catalogView === '役' ? 'active' : ''} onClick={() => { setCatalogView('役'); setLessonTermIds(null) }}>役 <span>10</span></button><button role="tab" aria-selected={catalogView === 'カード'} className={catalogView === 'カード' ? 'active' : ''} onClick={() => { setCatalogView('カード'); setLessonTermIds(null) }}>カードの強さ <span>13</span></button></div>
         <label className="search-box"><Search size={18} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={catalogView === '用語' ? '用語を検索（例：フロップ、all-in、BB）' : catalogView === '役' ? '役を検索（例：フラッシュ、Straight）' : 'カードを検索（例：エース、K、10）'} aria-label="図鑑を検索" />{query && <button className="clear-search" onClick={() => setQuery('')} aria-label="検索をクリア"><X size={16} /></button>}</label>
         {catalogView === '用語' && <><div className="filter-row"><div className="filter-pills" aria-label="難易度"><button className={`filter-pill ${level === 'すべて' ? 'selected' : ''}`} onClick={() => setLevel('すべて')}>すべて</button><button className={`filter-pill ${level === '基本' ? 'selected' : ''}`} onClick={() => setLevel(level === '基本' ? 'すべて' : '基本')}>基本</button><button className={`filter-pill ${level === '実戦' ? 'selected' : ''}`} onClick={() => setLevel(level === '実戦' ? 'すべて' : '実戦')}>実戦</button></div>{hasFilters && <button className="reset-button" onClick={resetFilters}>条件をリセット</button>}</div>
         <div className="filter-pills category-pills"><button className={`filter-pill ${category === 'すべて' ? 'selected' : ''}`} onClick={() => setCategory('すべて')}>すべてのカテゴリ</button>{categories.map((item) => <button key={item} className={`filter-pill ${category === item ? 'selected' : ''}`} onClick={() => setCategory(category === item ? 'すべて' : item)}>{item}</button>)}</div>
